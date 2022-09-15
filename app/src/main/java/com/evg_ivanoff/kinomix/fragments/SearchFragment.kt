@@ -64,24 +64,12 @@ class SearchFragment : Fragment() {
                         response: Response<FilmListItem>
                     ) {
                         filmVM.setSearchFilmList(response.body()!!.search)
-//                        val fragment = ListFragment().apply {
-//                            arguments = Bundle().apply {
-//                                putInt("SIZE", response.body()!!.search.size)
-//                                for (i in 0..response.body()!!.search.size-1) {
-//                                    putString("FILM_POSTER$i", response.body()!!.search.get(i).poster)
-//                                    putString("FILM_TITLE$i", response.body()!!.search.get(i).title)
-//                                    putString("FILM_YEAR$i", response.body()!!.search.get(i).year)
-//                                    putString("FILM_TYPE$i", response.body()!!.search.get(i).type)
-//                                }
-//                            }
-//                        }
                         Toast.makeText(
                             context,
                             "Find ${response.body()!!.search.size} results",
                             Toast.LENGTH_SHORT
                         ).show()
                         Log.d("TAG_FILM", response.body().toString())
-//                        launchFragment(fragment)
                         requireActivity().supportFragmentManager.beginTransaction()
                             .replace(R.id.result_fragment, ListFragment())
                             .commit()
