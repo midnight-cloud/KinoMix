@@ -1,13 +1,13 @@
 package com.evg_ivanoff.kinomix.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.evg_ivanoff.kinomix.Film
 import com.evg_ivanoff.kinomix.FilmListItem
 import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FragmentSearchBinding
@@ -48,24 +48,34 @@ class SearchFragment : Fragment() {
         initSpinner()
         binding.btnSearch.setOnClickListener {
             mService = Common.retrofitServices
-            mService.getTest(
+            val film = binding.tvSearchField.text.trim().toString()
+            mService.getOneFilmListByName(
                 Common.API_KEY,
-                "tt1285016"
+                film
             )
-                .enqueue(object : Callback<Film> {
+                .enqueue(object : Callback<FilmListItem> {
 
-                    override fun onResponse(call: Call<Film>, response: Response<Film>) {
-                        val fragment = OneFilmFragment().apply {
+                    override fun onResponse(
+                        call: Call<FilmListItem>,
+                        response: Response<FilmListItem>
+                    ) {
+                        val fragment = ListFragment().apply {
                             arguments = Bundle().apply {
-                                putString("FILM_TITLE", response.body()?.title)
+                                putInt("SIZE", response.body()!!.search.size)
+                                for (i in 0..response.body()!!.search.size-1) {
+                                    putString("FILM_TITLE$i", response.body()!!.search.get(i).title)
+                                }
                             }
                         }
-                        Toast.makeText(context, "Title: ${response.body()?.title}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "success", Toast.LENGTH_SHORT).show()
+                        Log.d("TAG_FILM", response.body().toString())
                         launchFragment(fragment)
                     }
 
-                    override fun onFailure(call: Call<Film>, t: Throwable) {
+                    override fun onFailure(call: Call<FilmListItem>, t: Throwable) {
                         Toast.makeText(context, "404 error", Toast.LENGTH_SHORT).show()
+                        Log.d("TAG_FILM", t.toString())
+
                     }
 
                 })

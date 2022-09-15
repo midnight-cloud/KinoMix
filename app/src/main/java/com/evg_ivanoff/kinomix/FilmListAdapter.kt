@@ -8,14 +8,17 @@ import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
 //    private val inputData: List<FilmListItem> = listOf()
-    private var items: List<FilmListItem> = listOf()
+//    private var items: List<FilmListItem> = listOf()
+    private var items: List<String> = listOf()
 
     class FilmViewHolder(private val binding: FilmListOneItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FilmListItem) {
+        fun bind(item: String) {
             binding.apply {
-                filmTitle.text = item.totalResults
-                filmYear.text = item.response
+//                filmTitle.text = item.totalResults
+                filmTitle.text = item
+                filmYear.text = "2020"
+//                filmYear.text = item.response
             }
         }
 
@@ -36,7 +39,7 @@ class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
     override fun getItemCount() = items.size
 
-    fun refresh(items: List<FilmListItem>) {
+    fun refresh(items: List<String>) {
         this.items = items
         notifyDataSetChanged()
     }

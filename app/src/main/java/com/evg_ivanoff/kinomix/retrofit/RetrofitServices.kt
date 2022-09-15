@@ -8,18 +8,26 @@ import retrofit2.http.Query
 
 interface RetrofitServices {
 
-    @GET("{s}")
-    fun getFilmByFilmID(@Query("apikey") apiKey: String): Call<Film>
-
-    @GET("?apikey=9b7e5ebe")
-    fun getFilmListByName(
-//        @Query("apikey") apiKey: String,
-        @Query("s") title: String): Call<MutableList<FilmListItem>>
+    @GET("/")
+    fun getFilmByFilmID(
+        @Query("apikey") apiKey: String,
+        @Query("t") name:String
+    ): Call<Film>
 
     @GET("/")
-    fun getTest(
+    fun getOneFilmListByName(
         @Query("apikey") apiKey: String,
-        @Query("i") id: String
-    ): Call<Film>
+        @Query("s") title: String): Call<FilmListItem>
+
+    @GET("/")
+    fun getFilmListByName(
+        @Query("apikey") apiKey: String,
+        @Query("s") title: String): Call<FilmListItem>
+
+//    @GET("/")
+//    fun getTest(
+//        @Query("apikey") apiKey: String,
+//        @Query("i") id: String
+//    ): Call<Film>
 
 }

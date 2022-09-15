@@ -1,6 +1,7 @@
 package com.evg_ivanoff.kinomix.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,13 +22,19 @@ class ListFragment : Fragment() {
     private var param2: String? = null
     private lateinit var listItem: MutableList<FilmListItem>
     private lateinit var adapter: FilmListAdapter
+    private var size : Int = 0
+    private var titles = mutableListOf<String>()
 
     private lateinit var binding: FragmentListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            listItem = it.getParcelable("FILM_LIST")!!
+//            listItem = it.getParcelable("FILM_LIST")!!
+            size = it.getInt("SIZE")
+            for (i in 0..size-1) {
+                titles.add(it.getString("FILM_TITLE$i")!!)
+            }
         }
     }
 
@@ -40,10 +47,12 @@ class ListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (listItem != null) {
+        Log.d("TAG_FILM", titles.toString())
+        if (titles != null) {
             binding.rvFilmList.layoutManager = LinearLayoutManager(requireContext())
             adapter = FilmListAdapter()
-            adapter.refresh(listItem)
+            binding.rvFilmList.adapter = adapter
+            adapter.refresh(titles)
         }
     }
 
