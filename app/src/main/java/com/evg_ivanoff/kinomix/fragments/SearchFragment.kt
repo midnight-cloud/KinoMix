@@ -58,7 +58,6 @@ class SearchFragment : Fragment() {
                 film
             )
                 .enqueue(object : Callback<FilmListItem> {
-
                     override fun onResponse(
                         call: Call<FilmListItem>,
                         response: Response<FilmListItem>
@@ -100,15 +99,6 @@ class SearchFragment : Fragment() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinChooseSearch.adapter = adapter
-//        binding.spinChooseSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//
-//            }
-//        }
     }
 
     companion object {

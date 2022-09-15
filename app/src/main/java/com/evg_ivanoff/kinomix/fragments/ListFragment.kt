@@ -1,5 +1,6 @@
 package com.evg_ivanoff.kinomix.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,20 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.evg_ivanoff.kinomix.FilmListAdapter
-import com.evg_ivanoff.kinomix.FilmListItem
+import com.evg_ivanoff.kinomix.models.FilmListAdapter
 import com.evg_ivanoff.kinomix.FilmListItemDetail
 import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FragmentListBinding
-import com.evg_ivanoff.kinomix.databinding.FragmentSearchBinding
+import com.evg_ivanoff.kinomix.models.FilmDetailActivity
 import com.evg_ivanoff.kinomix.models.FilmViewModel
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), FilmListAdapter.Listener {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -54,19 +53,12 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("TAG_FILM", titles.toString())
-//        listItem = filmVM.getSearchFilmList()
         binding.rvFilmList.layoutManager = LinearLayoutManager(requireContext())
-        adapter = FilmListAdapter()
+        adapter = FilmListAdapter(this)
         binding.rvFilmList.adapter = adapter
         filmVM.filmList.observe(activity as LifecycleOwner, {
             it?.let { adapter.refresh(it) }
         })
-//        if (titles != null) {
-//            binding.rvFilmList.layoutManager = LinearLayoutManager(requireContext())
-//            adapter = FilmListAdapter()
-//            binding.rvFilmList.adapter = adapter
-//            adapter.refresh(titles)
-//        }
     }
 
     companion object {
@@ -78,5 +70,15 @@ class ListFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemClick(item: FilmListItemDetail) {
+        val intent = Intent(context, FilmDetailActivity::class.java)
+        startActivity(intent)
+
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(R.id.result_fragment, OneFilmFragment())
+//            .addToBackStack(null)
+//            .commit()
     }
 }

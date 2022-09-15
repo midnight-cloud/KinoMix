@@ -1,14 +1,15 @@
-package com.evg_ivanoff.kinomix
+package com.evg_ivanoff.kinomix.models
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.evg_ivanoff.kinomix.FilmListItemDetail
+import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
-class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
+class FilmListAdapter(val listener: Listener) : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
 //    private val inputData: List<FilmListItem> = listOf()
 //    private var items: List<FilmListItem> = listOf()
@@ -16,7 +17,7 @@ class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
     class FilmViewHolder(private val binding: FilmListOneItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FilmListItemDetail) {
+        fun bind(item: FilmListItemDetail, listener: Listener) {
             binding.apply {
                 filmPoster.load(item.poster){
                     crossfade(true)
@@ -27,6 +28,9 @@ class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
                 filmTitle.text = item.title
                 filmYear.text = item.year
                 filmStyle.text = item.type
+            }
+            itemView.setOnClickListener {
+                listener.onItemClick(item)
             }
         }
 
@@ -42,7 +46,7 @@ class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FilmViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
     }
 
     override fun getItemCount() = items.size
@@ -50,5 +54,9 @@ class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
     fun refresh(items: List<FilmListItemDetail>) {
         this.items = items
         notifyDataSetChanged()
+    }
+
+    interface Listener {
+        fun onItemClick(item: FilmListItemDetail)
     }
 }

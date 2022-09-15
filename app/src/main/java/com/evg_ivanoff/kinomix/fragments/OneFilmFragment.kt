@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FragmentOneFilmBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class OneFilmFragment : Fragment() {
+class OneFilmFragment : Fragment(){
 
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +34,7 @@ class OneFilmFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tvTitle.text = filmTitle
+        binding.filmTitle.text = "При большом количестве информации, которую нужно поместить на экране приходится использовать полосы прокрутки. В Android существуют специальные компоненты ScrollView и HorizontalScrollView, которые являются контейнерными элементами и наследуются от ViewGroup. Обратите внимание, что класс TextView использует свою собственную прокрутку и не нуждается в добавлении отдельных полос прокрутки. Но использование отдельных полос даже с TextView может улучшить вид вашего приложения и повышает удобство работы для пользователя."
     }
 
     companion object {
@@ -57,4 +56,5 @@ class OneFilmFragment : Fragment() {
                 }
             }
     }
+
 }
