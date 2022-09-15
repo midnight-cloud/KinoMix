@@ -8,32 +8,8 @@ data class FilmListItem(
     @SerializedName("Search"       ) var search       : ArrayList<FilmListItemDetail> = arrayListOf(),
     @SerializedName("totalResults" ) var totalResults : String?           = null,
     @SerializedName("Response"     ) var response     : String?           = null
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        TODO("search"),
-        parcel.readString(),
-        parcel.readString()
-    )
+)
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(p0: Parcel?, p1: Int) {
-        p0?.writeString(this.totalResults)
-        p0?.writeString(this.response)
-    }
-
-    companion object CREATOR : Parcelable.Creator<FilmListItem> {
-        override fun createFromParcel(parcel: Parcel): FilmListItem {
-            return FilmListItem(parcel)
-        }
-
-        override fun newArray(size: Int): Array<FilmListItem?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
 
 data class FilmListItemDetail(
     @SerializedName("Title"  ) var title  : String? = null,
@@ -41,38 +17,7 @@ data class FilmListItemDetail(
     @SerializedName("imdbID" ) var imdbID : String? = null,
     @SerializedName("Type"   ) var type   : String? = null,
     @SerializedName("Poster" ) var poster : String? = null
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
-    ) {
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(parcel: Parcel?, flags: Int) {
-        parcel?.writeString(this.title)
-        parcel?.writeString(this.year)
-        parcel?.writeString(this.imdbID)
-        parcel?.writeString(this.type)
-        parcel?.writeString(this.poster)
-    }
-
-    companion object CREATOR : Parcelable.Creator<FilmListItemDetail> {
-        override fun createFromParcel(parcel: Parcel): FilmListItemDetail {
-            return FilmListItemDetail(parcel)
-        }
-
-        override fun newArray(size: Int): Array<FilmListItemDetail?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+)
 
 data class Film(
     @SerializedName("Title") var title: String? = null,

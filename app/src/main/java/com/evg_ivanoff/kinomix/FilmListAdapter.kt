@@ -2,23 +2,31 @@ package com.evg_ivanoff.kinomix
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
 class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
 //    private val inputData: List<FilmListItem> = listOf()
 //    private var items: List<FilmListItem> = listOf()
-    private var items: List<String> = listOf()
+    private var items: List<FilmListItemDetail> = listOf()
 
     class FilmViewHolder(private val binding: FilmListOneItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
+        fun bind(item: FilmListItemDetail) {
             binding.apply {
-//                filmTitle.text = item.totalResults
-                filmTitle.text = item
-                filmYear.text = "2020"
-//                filmYear.text = item.response
+                filmPoster.load(item.poster){
+                    crossfade(true)
+                    placeholder(R.drawable.image_loading)
+                    error(R.drawable.image_not_found)
+                    transformations(CircleCropTransformation())
+                }
+                filmTitle.text = item.title
+                filmYear.text = item.year
+                filmStyle.text = item.type
             }
         }
 
@@ -39,7 +47,7 @@ class FilmListAdapter : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
     override fun getItemCount() = items.size
 
-    fun refresh(items: List<String>) {
+    fun refresh(items: List<FilmListItemDetail>) {
         this.items = items
         notifyDataSetChanged()
     }
