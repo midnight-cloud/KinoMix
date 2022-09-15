@@ -11,7 +11,7 @@ interface RetrofitServices {
     @GET("/")
     fun getFilmByFilmID(
         @Query("apikey") apiKey: String,
-        @Query("t") name:String
+        @Query("i") name:String
     ): Call<Film>
 
     @GET("/")

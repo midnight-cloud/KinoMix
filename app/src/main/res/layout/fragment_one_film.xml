@@ -37,7 +37,47 @@
                 android:textSize="22sp" />
 
             <TextView
+                android:id="@+id/film_country"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_genre"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
                 android:id="@+id/film_runtime"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_director"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_actor"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_plot"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_awards"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_metascore"
+                style="@style/FilmDetailTextStyle"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/film_imdbrating"
                 style="@style/FilmDetailTextStyle"
                 android:textSize="22sp" />
 

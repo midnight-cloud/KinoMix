@@ -74,6 +74,7 @@ class ListFragment : Fragment(), FilmListAdapter.Listener {
 
     override fun onItemClick(item: FilmListItemDetail) {
         val intent = Intent(context, FilmDetailActivity::class.java)
+        intent.putExtra("FILM_ID", item.imdbID)
         startActivity(intent)
 
 //        requireActivity().supportFragmentManager.beginTransaction()
