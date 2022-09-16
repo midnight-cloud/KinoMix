@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".fragments.SearchFragment">
 
     <LinearLayout
@@ -10,12 +10,6 @@
         android:layout_height="match_parent"
         android:padding="8dp"
         android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/spin_choose_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
 
         <EditText
             android:id="@+id/tvSearchField"
@@ -30,6 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_search"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFilmList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

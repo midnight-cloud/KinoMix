@@ -19,4 +19,12 @@ open class FilmViewModel: ViewModel() {
     fun setFilmDetail(film: Film) {
         this.filmDetail = MutableLiveData(film)
     }
+
+    var favoriteFilms : MutableLiveData<List<Film>> = MutableLiveData()
+    fun setFavoriteFilms(film: Film) {
+        this.favoriteFilms = MutableLiveData(listOf(film))
+    }
+    fun deleteFavoriteFilms() {
+        favoriteFilms = MutableLiveData(listOf())
+    }
 }

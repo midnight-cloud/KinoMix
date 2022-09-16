@@ -5,21 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.evg_ivanoff.kinomix.Film
 import com.evg_ivanoff.kinomix.FilmListItemDetail
 import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
 
 //короче, вот тут надо в items передавать либо FilmListItemDetail либо Film
-class FilmListAdapter(val listener: Listener) : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
+class FavoritesListAdapter(val listener: Listener) : RecyclerView.Adapter<FavoritesListAdapter.FilmViewHolder>() {
 
 //    private val inputData: List<FilmListItem> = listOf()
 //    private var items: List<FilmListItem> = listOf()
-    private var items: List<FilmListItemDetail> = listOf()
+    private var items: List<Film> = listOf()
 
     class FilmViewHolder(private val binding: FilmListOneItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FilmListItemDetail, listener: Listener) {
+        fun bind(item: Film, listener: Listener) {
             binding.apply {
                 filmPoster.load(item.poster){
                     crossfade(true)
@@ -53,12 +54,12 @@ class FilmListAdapter(val listener: Listener) : RecyclerView.Adapter<FilmListAda
 
     override fun getItemCount() = items.size
 
-    fun refresh(items: List<FilmListItemDetail>) {
+    fun refresh(items: List<Film>) {
         this.items = items
         notifyDataSetChanged()
     }
 
     interface Listener {
-        fun onItemClick(item: FilmListItemDetail)
+        fun onItemClick(item: Film)
     }
 }

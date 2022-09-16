@@ -6,6 +6,7 @@
     <string name="button_search">Search</string>
     <string name="example">example</string>
     <string name="film_poster">film poster</string>
+    <string name="favorites">Favorites</string>
 
     <string-array name="serach">
         <item>По названию фильма</item>
