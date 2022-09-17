@@ -11,6 +11,7 @@ import com.evg_ivanoff.kinomix.databinding.ActivityMainBinding
 import com.evg_ivanoff.kinomix.fragments.FavoritesFragment
 import com.evg_ivanoff.kinomix.fragments.ListFragment
 import com.evg_ivanoff.kinomix.fragments.SearchFragment
+import com.evg_ivanoff.kinomix.models.FavoriteFilmsViewModel
 import com.evg_ivanoff.kinomix.models.FilmViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val dataModel: FilmViewModel by viewModels()
     private var activityRestored = false
+//    private val favoriteFilmViewModel: FavoriteFilmsViewModel by viewModels {
+//        FavoriteFilmsViewModelFactory((application as MyApplication).repository)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

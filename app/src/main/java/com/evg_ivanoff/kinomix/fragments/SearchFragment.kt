@@ -10,11 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.evg_ivanoff.kinomix.Film
-import com.evg_ivanoff.kinomix.FilmListItem
-import com.evg_ivanoff.kinomix.FilmListItemDetail
-import com.evg_ivanoff.kinomix.R
+import com.evg_ivanoff.kinomix.*
 import com.evg_ivanoff.kinomix.databinding.FragmentSearchBinding
+import com.evg_ivanoff.kinomix.models.FavoriteFilmsViewModel
+import com.evg_ivanoff.kinomix.models.FavoriteFilmsViewModelFactory
 import com.evg_ivanoff.kinomix.models.FilmListAdapter
 import com.evg_ivanoff.kinomix.models.FilmViewModel
 import com.evg_ivanoff.kinomix.retrofit.Common
@@ -36,6 +35,9 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
     private val filmVM: FilmViewModel by activityViewModels()
     private lateinit var adapter: FilmListAdapter
     private var filmList = mutableListOf<FilmListItemDetail>()
+    private val favoriteFilmViewModel: FavoriteFilmsViewModel by activityViewModels {
+        FavoriteFilmsViewModelFactory((requireActivity().application as MyApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +63,11 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
         binding.rvFilmList.adapter = adapter
         filmVM.filmList.observe(activity as LifecycleOwner, {
             it?.let { adapter.refresh(it) }
+        })
+        favoriteFilmViewModel.allFavoriteFilms.observe(activity as LifecycleOwner, {
+            it?.let {
+
+            }
         })
 
         binding.btnSearch.setOnClickListener {

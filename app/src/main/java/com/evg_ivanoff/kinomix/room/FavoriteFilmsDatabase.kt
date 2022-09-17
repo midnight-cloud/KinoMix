@@ -26,4 +26,16 @@ public abstract class FavoriteFilmsDatabase : RoomDatabase() {
             }
         }
     }
+//    private class FavoriteFilmsDatabaseCallback(private val scope:CoroutineScope): RoomDatabase.Callback() {
+//        override fun onCreate(db: SupportSQLiteDatabase) {
+//            super.onCreate(db)
+//            INSTANCE?.let { database ->
+//                scope.launch {
+//                    var filmDao = database.favFilmDao()
+//
+//                }
+//            }
+//        }
+//    }
+
 }

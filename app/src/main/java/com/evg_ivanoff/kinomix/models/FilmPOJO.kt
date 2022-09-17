@@ -2,7 +2,9 @@ package com.evg_ivanoff.kinomix
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -52,8 +54,9 @@ data class Film(
     var awards: String? = null,
     @SerializedName("Poster")
     var poster: String? = null,
-    @SerializedName("Ratings")
-    var ratings: ArrayList<Ratings> = arrayListOf(),
+//    @Embedded
+//    @SerializedName("Ratings")
+//    var ratings: ArrayList<Ratings> = arrayListOf(),
     @SerializedName("Metascore")
     var metascore: String? = null,
     @SerializedName("imdbRating")
@@ -61,8 +64,9 @@ data class Film(
     @SerializedName("imdbVotes")
     var imdbVotes: String? = null,
     @PrimaryKey
+    @NonNull
     @SerializedName("imdbID")
-    var imdbID: String? = null,
+    var imdbID: String,
     @SerializedName("Type")
     var type: String? = null,
     @SerializedName("DVD")

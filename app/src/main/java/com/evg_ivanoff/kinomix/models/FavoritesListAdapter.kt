@@ -2,6 +2,7 @@ package com.evg_ivanoff.kinomix.models
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -14,8 +15,6 @@ import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 //короче, вот тут надо в items передавать либо FilmListItemDetail либо Film
 class FavoritesListAdapter(val listener: Listener) : RecyclerView.Adapter<FavoritesListAdapter.FilmViewHolder>() {
 
-//    private val inputData: List<FilmListItem> = listOf()
-//    private var items: List<FilmListItem> = listOf()
     private var items: List<Film> = listOf()
 
     class FilmViewHolder(private val binding: FilmListOneItemBinding) :
@@ -62,4 +61,15 @@ class FavoritesListAdapter(val listener: Listener) : RecyclerView.Adapter<Favori
     interface Listener {
         fun onItemClick(item: Film)
     }
+
+
 }
+//class FilmComparator: DiffUtil.ItemCallback<Film>() {
+//    override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
+//        return oldItem == newItem
+//    }
+//
+//    override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
+//        return oldItem.title == newItem.title
+//    }
+//}

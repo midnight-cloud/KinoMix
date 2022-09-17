@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.evg_ivanoff.kinomix"
@@ -72,6 +72,6 @@ dependencies {
     implementation("androidx.room:room-rxjava3:$room_version")
 
     // optional - Paging 3 Integration
-    implementation("androidx.room:room-paging:2.5.0-alpha03")
+    implementation("androidx.room:room-paging:2.4.3")
 
     }
