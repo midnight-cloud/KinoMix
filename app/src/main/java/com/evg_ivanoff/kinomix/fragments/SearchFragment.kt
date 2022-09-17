@@ -22,31 +22,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class SearchFragment : Fragment(), FilmListAdapter.Listener {
-
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var mService: RetrofitServices
     private val filmVM: FilmViewModel by activityViewModels()
     private lateinit var adapter: FilmListAdapter
     private var filmList = mutableListOf<FilmListItemDetail>()
-    private val favoriteFilmViewModel: FavoriteFilmsViewModel by activityViewModels {
-        FavoriteFilmsViewModelFactory((requireActivity().application as MyApplication).repository)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,11 +45,6 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
         binding.rvFilmList.adapter = adapter
         filmVM.filmList.observe(activity as LifecycleOwner, {
             it?.let { adapter.refresh(it) }
-        })
-        favoriteFilmViewModel.allFavoriteFilms.observe(activity as LifecycleOwner, {
-            it?.let {
-
-            }
         })
 
         binding.btnSearch.setOnClickListener {
@@ -91,9 +68,8 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
                         ).show()
                         adapter.refresh(filmList)
                     }
-
                     override fun onFailure(call: Call<FilmListItem>, t: Throwable) {
-                        Toast.makeText(context, "404 error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "No network connection", Toast.LENGTH_SHORT).show()
                     }
                 })
         }
@@ -106,19 +82,7 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
             .commit()
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
     override fun onItemClick(item: FilmListItemDetail) {
-
         if (item.imdbID != null) {
             mService = Common.retrofitServices
             mService.getFilmByFilmID(
@@ -128,13 +92,10 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
                 .enqueue(object : Callback<Film> {
                     override fun onResponse(call: Call<Film>, response: Response<Film>) {
                         filmVM.filmDetail.value = response.body()
-                        Log.d("TAG_FILM", response.body().toString())
                         launchFragment(OneFilmFragment())
                     }
-
                     override fun onFailure(call: Call<Film>, t: Throwable) {
-                        Toast.makeText(context, "404 error", Toast.LENGTH_SHORT).show()
-                        Log.d("TAG_FILM", t.toString())
+                        Toast.makeText(context, "No network connection", Toast.LENGTH_SHORT).show()
                     }
                 })
         }

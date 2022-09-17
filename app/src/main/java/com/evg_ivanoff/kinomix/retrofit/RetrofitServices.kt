@@ -15,19 +15,8 @@ interface RetrofitServices {
     ): Call<Film>
 
     @GET("/")
-    fun getOneFilmListByName(
-        @Query("apikey") apiKey: String,
-        @Query("s") title: String): Call<FilmListItem>
-
-    @GET("/")
     fun getFilmListByName(
         @Query("apikey") apiKey: String,
         @Query("s") title: String): Call<FilmListItem>
-
-//    @GET("/")
-//    fun getTest(
-//        @Query("apikey") apiKey: String,
-//        @Query("i") id: String
-//    ): Call<Film>
 
 }

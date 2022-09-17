@@ -54,6 +54,7 @@ data class Film(
     var awards: String? = null,
     @SerializedName("Poster")
     var poster: String? = null,
+    //Это я убрал просто чтобы не париться, а нафиг оно мне надо
 //    @Embedded
 //    @SerializedName("Ratings")
 //    var ratings: ArrayList<Ratings> = arrayListOf(),
@@ -81,7 +82,7 @@ data class Film(
     var response: String? = null
 )
 
-data class Ratings(
-    @SerializedName("Source") var source: String? = null,
-    @SerializedName("Value") var value: String? = null
-)
+//data class Ratings(
+//    @SerializedName("Source") var source: String? = null,
+//    @SerializedName("Value") var value: String? = null
+//)

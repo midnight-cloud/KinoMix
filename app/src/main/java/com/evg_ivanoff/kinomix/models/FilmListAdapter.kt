@@ -9,12 +9,8 @@ import com.evg_ivanoff.kinomix.FilmListItemDetail
 import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
-
-//короче, вот тут надо в items передавать либо FilmListItemDetail либо Film
 class FilmListAdapter(val listener: Listener) : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
-//    private val inputData: List<FilmListItem> = listOf()
-//    private var items: List<FilmListItem> = listOf()
     private var items: List<FilmListItemDetail> = listOf()
 
     class FilmViewHolder(private val binding: FilmListOneItemBinding) :

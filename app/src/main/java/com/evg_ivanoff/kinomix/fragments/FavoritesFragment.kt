@@ -18,13 +18,7 @@ import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FragmentFavoritesBinding
 import com.evg_ivanoff.kinomix.models.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
-
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var binding: FragmentFavoritesBinding
     private val filmVM: FilmViewModel by activityViewModels()
@@ -34,14 +28,6 @@ class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
     }
 
     private lateinit var adapter: FavoritesListAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,30 +41,14 @@ class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
         binding.rvFavorites.layoutManager = LinearLayoutManager(requireContext())
         adapter = FavoritesListAdapter(this@FavoritesFragment)
         binding.rvFavorites.adapter = adapter
-
-//        Log.d("TESTO", chota!!.get(0).title.toString())
-
         favoriteFilmViewModel.allFavoriteFilms.observe(activity as LifecycleOwner, {
-//            Log.d("TESTO", it.toString())
             it?.let {
                 adapter.refresh(it)
             }
         })
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavoritesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
     override fun onItemClick(item: Film) {
-        Toast.makeText(context, "Uacacaca", Toast.LENGTH_SHORT).show()
         filmVM.filmDetail.value = item
         launchFragment(OneFilmFragment())
     }
@@ -89,6 +59,4 @@ class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
             .addToBackStack(null)
             .commit()
     }
-
-
 }

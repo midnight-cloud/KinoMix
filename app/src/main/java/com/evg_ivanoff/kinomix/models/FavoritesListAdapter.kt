@@ -12,7 +12,6 @@ import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
 
-//короче, вот тут надо в items передавать либо FilmListItemDetail либо Film
 class FavoritesListAdapter(val listener: Listener) : RecyclerView.Adapter<FavoritesListAdapter.FilmViewHolder>() {
 
     private var items: List<Film> = listOf()
@@ -61,15 +60,4 @@ class FavoritesListAdapter(val listener: Listener) : RecyclerView.Adapter<Favori
     interface Listener {
         fun onItemClick(item: Film)
     }
-
-
 }
-//class FilmComparator: DiffUtil.ItemCallback<Film>() {
-//    override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
-//        return oldItem == newItem
-//    }
-//
-//    override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
-//        return oldItem.title == newItem.title
-//    }
-//}
