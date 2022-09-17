@@ -5,6 +5,7 @@ import com.evg_ivanoff.kinomix.Film
 import com.evg_ivanoff.kinomix.room.FavoriteFilmsRepository
 import kotlinx.coroutines.launch
 
+//эту модель я использую для общения с репозиторием, который общается с БД
 class FavoriteFilmsViewModel(private val repository: FavoriteFilmsRepository): ViewModel() {
     val allFavoriteFilms: LiveData<List<Film>> = repository.allFavoriteFilms.asLiveData()
     fun insert(film: Film) = viewModelScope.launch {

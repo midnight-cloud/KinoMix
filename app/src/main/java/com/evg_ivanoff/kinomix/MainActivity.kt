@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             startFragment(SearchFragment(), R.id.search_fragment)
         }
 
+        //это тут для того чтобы проинициализироваться
         favoriteFilmViewModel.allFavoriteFilms.observe(this, {
             it?.let { }
         })

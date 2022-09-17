@@ -9,6 +9,7 @@ import com.evg_ivanoff.kinomix.FilmListItemDetail
 import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
+//этот адаптер для результатов поиска
 class FilmListAdapter(val listener: Listener) : RecyclerView.Adapter<FilmListAdapter.FilmViewHolder>() {
 
     private var items: List<FilmListItemDetail> = listOf()

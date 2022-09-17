@@ -11,7 +11,7 @@ import com.evg_ivanoff.kinomix.FilmListItemDetail
 import com.evg_ivanoff.kinomix.R
 import com.evg_ivanoff.kinomix.databinding.FilmListOneItemBinding
 
-
+//этот адаптер для "избранных"
 class FavoritesListAdapter(val listener: Listener) : RecyclerView.Adapter<FavoritesListAdapter.FilmViewHolder>() {
 
     private var items: List<Film> = listOf()

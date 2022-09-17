@@ -1,21 +1,18 @@
 package com.evg_ivanoff.kinomix
 
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+//это мы получаем через api
 data class FilmListItem(
     @SerializedName("Search"       ) var search       : ArrayList<FilmListItemDetail> = arrayListOf(),
     @SerializedName("totalResults" ) var totalResults : String?           = null,
     @SerializedName("Response"     ) var response     : String?           = null
 )
 
-
+//это используем для отображения результатов
 data class FilmListItemDetail(
     @SerializedName("Title"  ) var title  : String? = null,
     @SerializedName("Year"   ) var year   : String? = null,
@@ -24,6 +21,7 @@ data class FilmListItemDetail(
     @SerializedName("Poster" ) var poster : String? = null
 )
 
+//а это детальная информация, связывается по imdbID
 @Entity(tableName = "favorite_films_table")
 data class Film(
     @SerializedName("Title")
@@ -54,7 +52,7 @@ data class Film(
     var awards: String? = null,
     @SerializedName("Poster")
     var poster: String? = null,
-    //Это я убрал просто чтобы не париться, а нафиг оно мне надо
+    //Это я убрал просто чтобы не париться
 //    @Embedded
 //    @SerializedName("Ratings")
 //    var ratings: ArrayList<Ratings> = arrayListOf(),

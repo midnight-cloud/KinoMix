@@ -40,6 +40,13 @@ class OneFilmFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //небольшая проверка на поворот
+        if (savedInstanceState != null) {
+            film = filmVM.filmDetail.value!!
+            favFilmsBD = favoriteFilmViewModel.allFavoriteFilms.value!!
+            checkInFavorites(film, favFilmsBD)
+        }
+        //берем данные по фильму из Vm
         filmVM.filmDetail.observe(activity as LifecycleOwner, {
             it?.let {
                 bindFields(it)
@@ -47,18 +54,14 @@ class OneFilmFragment : Fragment() {
             }
         })
 
+        //берем данные из бд, чтобы свериться
         favoriteFilmViewModel.allFavoriteFilms.observe(activity as LifecycleOwner, {
             it?.let {
                 favFilmsBD = it
             }
         })
 
-        for (i in 0..favFilmsBD.size-1){
-            if (film.imdbID == favFilmsBD.get(i).imdbID){
-                flagFav = true
-                binding.btnFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_checked))
-            }
-        }
+        flagFav = checkInFavorites(film, favFilmsBD)
 
         binding.btnFavorite.setOnClickListener {
             when (flagFav) {
@@ -74,6 +77,17 @@ class OneFilmFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun checkInFavorites(film: Film, favList: List<Film>): Boolean {
+        var flag = false
+        for (i in 0..favList.size - 1) {
+            if (film.imdbID == favList.get(i).imdbID) {
+                binding.btnFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_checked))
+                flag = true
+            }
+        }
+        return flag
     }
 
     private fun bindFields(film: Film) {
@@ -92,5 +106,10 @@ class OneFilmFragment : Fragment() {
             filmRuntime.text = film.runtime
             filmTitle.text = film.title
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        filmVM.filmDetail.value = film
+        super.onSaveInstanceState(outState)
     }
 }
