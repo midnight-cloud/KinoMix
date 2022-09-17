@@ -1,7 +1,6 @@
 package com.evg_ivanoff.kinomix.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,12 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evg_ivanoff.kinomix.*
 import com.evg_ivanoff.kinomix.databinding.FragmentSearchBinding
-import com.evg_ivanoff.kinomix.models.FavoriteFilmsViewModel
-import com.evg_ivanoff.kinomix.models.FavoriteFilmsViewModelFactory
 import com.evg_ivanoff.kinomix.models.FilmListAdapter
 import com.evg_ivanoff.kinomix.models.FilmViewModel
 import com.evg_ivanoff.kinomix.retrofit.Common
 import com.evg_ivanoff.kinomix.retrofit.RetrofitServices
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
