@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
@@ -67,12 +68,14 @@ class OneFilmFragment : Fragment() {
             when (flagFav) {
                 true -> {
                     flagFav = false
-                    binding.btnFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_unchecked))
+                    binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(
+                        requireContext(), R.drawable.ic_favorite_unchecked))
                     favoriteFilmViewModel.delete(film)
                 }
                 false -> {
                     flagFav = true
-                    binding.btnFavorite.setImageDrawable(resources.getDrawable(R.drawable.ic_favorite_checked))
+                    binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(
+                        requireContext(), R.drawable.ic_favorite_checked))
                     favoriteFilmViewModel.insert(film)
                 }
             }

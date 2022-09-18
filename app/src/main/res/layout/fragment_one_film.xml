@@ -7,22 +7,13 @@
     tools:context=".fragments.OneFilmFragment">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_margin="8dp"
-        android:layout_gravity="end"
 
-        android:src="@drawable/ic_favorite_unchecked" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -31,71 +22,123 @@
                 android:id="@+id/film_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/film_poster" />
+                android:contentDescription="@string/film_poster"
+                android:adjustViewBounds="true"
+                tools:src = "@tools:sample/avatars"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="end"
+                app:layout_constraintTop_toBottomOf="@+id/film_image"
+                app:layout_constraintBottom_toBottomOf="@+id/film_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_favorite_unchecked" />
 
             <TextView
                 android:id="@+id/film_title"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_rating"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_released"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_country"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_released"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/film_genre"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_country"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/film_runtime"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_genre"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_director"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_runtime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/film_actor"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_director"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_plot"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_actor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_awards"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_plot"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/film_metascore"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_awards"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/film_imdbrating"
                 style="@style/FilmDetailTextStyle"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintTop_toBottomOf="@+id/film_metascore"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
