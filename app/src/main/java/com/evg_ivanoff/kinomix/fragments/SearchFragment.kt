@@ -1,9 +1,7 @@
 package com.evg_ivanoff.kinomix.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -46,6 +44,9 @@ class SearchFragment : Fragment(), FilmListAdapter.Listener {
             it?.let { adapter.refresh(it) }
         })
 
+        binding.floatFavorite.setOnClickListener {
+            launchFragment(FavoritesFragment())
+        }
         binding.btnSearch.setOnClickListener {
             mService = Common.retrofitServices
             val film = binding.tvSearchField.text.trim().toString()

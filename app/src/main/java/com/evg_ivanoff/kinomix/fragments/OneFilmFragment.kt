@@ -2,9 +2,7 @@ package com.evg_ivanoff.kinomix.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -93,16 +91,18 @@ class OneFilmFragment : Fragment() {
         return flag
     }
 
+
+
     private fun bindFields(film: Film) {
         binding.apply {
             filmImage.load(film.poster)
-            filmActor.text = film.actors
-            filmAwards.text = film.awards
-            filmCountry.text = film.country
-            filmDirector.text = film.director
+//            filmActor.text = film.actors
+//            filmAwards.text = film.awards
+//            filmCountry.text = film.country
+            filmDirector.text = "Director: ${film.director}"
             filmGenre.text = film.genre
-            filmImdbrating.text = film.imdbRating
-            filmMetascore.text = film.metascore
+            filmImdbrating.text = "IMDB: ${film.imdbRating}"
+            filmMetascore.text = "Metascore: ${film.metascore}"
             filmPlot.text = film.plot
             filmRating.text = film.rated
             filmReleased.text = film.released

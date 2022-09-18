@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var activityRestored = false
-    private val favoriteFilmViewModel: FavoriteFilmsViewModel by viewModels {
-        FavoriteFilmsViewModelFactory((application as MyApplication).repository)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,28 +30,6 @@ class MainActivity : AppCompatActivity() {
             startFragment(SearchFragment(), R.id.search_fragment)
         }
 
-        //это тут для того чтобы проинициализироваться
-        favoriteFilmViewModel.allFavoriteFilms.observe(this, {
-            it?.let { }
-        })
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.favorites -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.search_fragment, FavoritesFragment())
-                    .addToBackStack(null)
-                    .commit()
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
