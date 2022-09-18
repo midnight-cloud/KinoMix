@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.evg_ivanoff.kinomix.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/oneFilmFragment"
+        android:name="com.evg_ivanoff.kinomix.fragments.OneFilmFragment"
+        android:label="fragment_one_film"
+        tools:layout="@layout/fragment_one_film" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.evg_ivanoff.kinomix.fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+</navigation>

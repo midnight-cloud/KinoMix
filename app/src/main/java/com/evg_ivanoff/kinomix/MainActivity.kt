@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.evg_ivanoff.kinomix.databinding.ActivityMainBinding
 import com.evg_ivanoff.kinomix.fragments.FavoritesFragment
 import com.evg_ivanoff.kinomix.fragments.SearchFragment
