@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.evg_ivanoff.kinomix.databinding.ActivityMainBinding
 import com.evg_ivanoff.kinomix.fragments.FavoritesFragment
 import com.evg_ivanoff.kinomix.fragments.SearchFragment
@@ -27,21 +28,16 @@ class MainActivity : AppCompatActivity() {
         activityRestored = savedInstanceState?.getBoolean("RESTORED") != null
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        if (activityRestored == false) {
-            startFragment(SearchFragment(), R.id.search_fragment)
-        }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         outState.putBoolean("RESTORED", true)
         super.onSaveInstanceState(outState, outPersistentState)
     }
-
-    private fun startFragment(fragment: Fragment, id: Int) {
-        supportFragmentManager.beginTransaction()
-            .replace(id, fragment)
-            .commit()
-    }
+//
+//    private fun startFragment(fragment: Fragment, id: Int) {
+//        supportFragmentManager.beginTransaction()
+//            .replace(id, fragment)
+//            .commit()
+//    }
 }

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evg_ivanoff.kinomix.Film
 import com.evg_ivanoff.kinomix.FilmListItemDetail
@@ -28,6 +30,7 @@ class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
     }
 
     private lateinit var adapter: FavoritesListAdapter
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +41,7 @@ class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        navController = findNavController()
         binding.rvFavorites.layoutManager = LinearLayoutManager(requireContext())
         adapter = FavoritesListAdapter(this@FavoritesFragment)
         binding.rvFavorites.adapter = adapter
@@ -50,13 +54,6 @@ class FavoritesFragment : Fragment(), FavoritesListAdapter.Listener {
 
     override fun onItemClick(item: Film) {
         filmVM.filmDetail.value = item
-        launchFragment(OneFilmFragment())
-    }
-
-    private fun launchFragment(fragment: Fragment) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.search_fragment, fragment)
-            .addToBackStack(null)
-            .commit()
+        navController.navigate(R.id.action_favoritesFragment_to_oneFilmFragment)
     }
 }

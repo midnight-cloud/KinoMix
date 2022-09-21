@@ -9,15 +9,36 @@
         android:id="@+id/searchFragment"
         android:name="com.evg_ivanoff.kinomix.fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/oneFilmFragment"
-        android:name="com.evg_ivanoff.kinomix.fragments.OneFilmFragment"
-        android:label="fragment_one_film"
-        tools:layout="@layout/fragment_one_film" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_oneFilmFragment2"
+            app:destination="@id/oneFilmFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.evg_ivanoff.kinomix.fragments.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_searchFragment2"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_oneFilmFragment"
+            app:destination="@id/oneFilmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oneFilmFragment"
+        android:name="com.evg_ivanoff.kinomix.fragments.OneFilmFragment"
+        android:label="fragment_one_film"
+        tools:layout="@layout/fragment_one_film" >
+        <action
+            android:id="@+id/action_oneFilmFragment_to_searchFragment2"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_oneFilmFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
 </navigation>
